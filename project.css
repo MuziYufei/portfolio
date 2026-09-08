@@ -500,7 +500,7 @@ a:focus-visible, button:focus-visible { outline: 1px solid currentColor; outline
 .quote-band blockquote { max-width: none; margin: 0; font: 700 42px/1.25 var(--font-sans); }
 
 .system-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-rows: 1fr; margin: 42px 0 0; border-top: 1px solid var(--line); }
-.system-list article { min-width: 0; min-height: 210px; padding: 20px 24px 20px 0; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.system-list article { display: flex; min-width: 0; min-height: 210px; flex-direction: column; justify-content: center; padding: 20px 24px 20px 0; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .system-list article:nth-child(3n + 2), .system-list article:nth-child(3n + 3) { padding-left: 24px; }
 .system-list article:nth-child(3n) { border-right: 0; }
 .system-list h3 { margin: 24px 0 10px; font: 700 24px/1.2 var(--font-sans); }
@@ -516,9 +516,12 @@ a:focus-visible, button:focus-visible { outline: 1px solid currentColor; outline
   border-bottom: 1px solid var(--ink);
 }
 .online-loop-step {
+  display: flex;
   min-width: 0;
   min-height: 220px;
-  padding: 20px 24px 24px 0;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px 24px 20px 0;
   border-right: 1px solid var(--line);
 }
 .online-loop-step + .online-loop-step { padding-left: 24px; }
