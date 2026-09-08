@@ -1,0 +1,70 @@
+{
+  "../online/node_modules/vinext/dist/shims/layout-segment-context.js": {
+    "file": "_next/static/chunks/layout-segment-context-DDxavD1g.js",
+    "name": "layout-segment-context",
+    "src": "../online/node_modules/vinext/dist/shims/layout-segment-context.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-C60lm6uB.js",
+      "virtual:vinext-app-browser-entry",
+      "_framework-BgSIrAUN.js"
+    ]
+  },
+  "_framework-BgSIrAUN.js": {
+    "file": "_next/static/chunks/framework-BgSIrAUN.js",
+    "name": "framework",
+    "imports": [
+      "_rolldown-runtime-C60lm6uB.js"
+    ]
+  },
+  "_localCommunity-Ca_zQeYQ.js": {
+    "file": "_next/static/chunks/localCommunity-Ca_zQeYQ.js",
+    "name": "localCommunity",
+    "imports": [
+      "_rolldown-runtime-C60lm6uB.js",
+      "_framework-BgSIrAUN.js"
+    ]
+  },
+  "_rolldown-runtime-C60lm6uB.js": {
+    "file": "_next/static/chunks/rolldown-runtime-C60lm6uB.js",
+    "name": "rolldown-runtime"
+  },
+  "app/draw/page.tsx": {
+    "file": "_next/static/chunks/page-B025HZU2.js",
+    "name": "page",
+    "src": "app/draw/page.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-C60lm6uB.js",
+      "_localCommunity-Ca_zQeYQ.js",
+      "_framework-BgSIrAUN.js"
+    ]
+  },
+  "app/page.tsx": {
+    "file": "_next/static/chunks/page-Bqa2UtPv.js",
+    "name": "page",
+    "src": "app/page.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-C60lm6uB.js",
+      "_localCommunity-Ca_zQeYQ.js",
+      "_framework-BgSIrAUN.js"
+    ]
+  },
+  "virtual:vinext-app-browser-entry": {
+    "file": "_next/static/chunks/index-C_wp-ySS.js",
+    "name": "index",
+    "src": "virtual:vinext-app-browser-entry",
+    "isEntry": true,
+    "imports": [
+      "_rolldown-runtime-C60lm6uB.js",
+      "_framework-BgSIrAUN.js"
+    ],
+    "dynamicImports": [
+      "../online/node_modules/vinext/dist/shims/layout-segment-context.js",
+      "app/draw/page.tsx",
+      "virtual:vinext-app-browser-entry",
+      "app/page.tsx"
+    ]
+  }
+}

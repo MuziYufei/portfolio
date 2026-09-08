@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Encoded Space: a playable 3D castle narrative prototype developed with Godot." />
+    <title>Encoded Space | LI Yufei</title>
+  <link rel="stylesheet" href="../project.css?v=20260908-detail-nav-copy-v5" />
+  </head>
+  <body class="castle">
+    <header class="case-nav case-shell">
+      <a href="../index.html">THE OTHER TO THE PLACE</a>
+      <nav class="case-nav-links" aria-label="Case study navigation">
+        <a href="../index.html#a-projects">Projects</a>
+        <a href="../profile.html">Profile</a>
+        <a href="../zh/projects/encoded-space.html">EN / 繁</a>
+        <a href="../Yufei-Li-CV.pdf">CV</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="case-hero case-shell">
+        <div class="case-hero-copy">
+          <div class="case-title">
+            <h1>Encoded Space</h1>
+            <p class="cn">Castle narrative prototype</p>
+            <p class="case-lead">
+              A short first-person game where rooms, clue objects, dialogue, and
+              choices gradually expose a family story.
+            </p>
+          </div>
+        </div>
+        <dl class="case-meta">
+          <div><dt>Context</dt><dd>Tsinghua × 37 Interactive Entertainment workshop</dd></div>
+          <div><dt>Media</dt><dd>3D game · UI system · playable build</dd></div>
+          <div><dt>Site</dt><dd>Castle narrative world</dd></div>
+        </dl>
+        <figure class="hero-media encoded-space-hero" data-encoded-space-slideshow>
+          <div class="encoded-space-slideshow" aria-label="Seven loading-screen backgrounds changing every three seconds">
+            <img class="is-active" src="../assets/encoded-space-loading-01.png" alt="Gothic attic loading-screen background" />
+            <img src="../assets/encoded-space-loading-02.png" alt="Green bedroom loading-screen background" />
+            <img src="../assets/encoded-space-loading-03.png" alt="Dark bedroom loading-screen background" />
+            <img src="../assets/encoded-space-loading-04.png" alt="Gothic garden loading-screen background" />
+            <img src="../assets/encoded-space-loading-05.png" alt="Gothic kitchen loading-screen background" />
+            <img src="../assets/encoded-space-loading-06.png" alt="Library bedroom loading-screen background" />
+            <img src="../assets/encoded-space-loading-07.png" alt="Gothic rooftop loading-screen background" />
+          </div>
+          <figcaption>Loading-screen backgrounds · changing every three seconds</figcaption>
+        </figure>
+      </section>
+
+      <section class="case-band">
+        <div class="case-section case-shell">
+          <div>
+            <h2 class="section-heading">Exploring family history within the castle.</h2>
+            <div class="prose">
+              <p>The story prototype draws on Shirley Jackson’s novel <em>We Have Always Lived in the Castle</em>, retaining its uneasy domestic atmosphere and questions surrounding the family’s past.</p>
+              <p>The team distributed the family’s history across rooms and clue objects for players to discover. Reading, collecting, dialogue, and choices reveal the story and give players reasons to revisit rooms with new information.</p>
+            </div>
+            <div class="media-grid three">
+              <figure><img src="../assets/thu-gameplay-exterior.png" alt="Castle exterior in the playable prototype" /><figcaption>Arrival · exterior establishes isolation</figcaption></figure>
+              <figure><img src="../assets/thu-gameplay-father.png" alt="Father character speaking to the player" /><figcaption>Dialogue · characters redirect interpretation</figcaption></figure>
+              <figure><img src="../assets/thu-gameplay-reading.png" alt="A readable clue describing arsenic in the kitchen" /><figcaption>Readable clue · evidence enters the story system</figcaption></figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-band">
+        <div class="case-section case-shell">
+          <div>
+            <h2 class="section-heading">Interaction systems for exploration, dialogue, and choice.</h2>
+            <div class="process-flow four" aria-label="Implemented interaction flow">
+              <article class="process-step"><span>01</span><h3>Approach</h3><p>Spatial triggers detect a player or an interactable object.</p></article>
+              <article class="process-step"><span>02</span><h3>Dispatch</h3><p>Story controllers call dialogue, reading, pickup, choice, or minigame events.</p></article>
+              <article class="process-step"><span>03</span><h3>Respond</h3><p>UI states pause, reveal, or redirect the player's next action.</p></article>
+              <article class="process-step"><span>04</span><h3>Persist</h3><p>Session and world state record clues, choices, and level progress.</p></article>
+            </div>
+            <div class="system-list">
+              <article><span class="media-label">Dialogue</span><h3>Character encounters</h3><p>Approaching a character triggers dialogue, with the dialogue manager loading the relevant content.</p></article>
+              <article><span class="media-label">Readable objects</span><h3>Evidence inspection</h3><p>Books, notes, and clue objects open dedicated reading states without leaving the scene.</p></article>
+              <article><span class="media-label">Choices</span><h3>Branching response</h3><p>Selected answers are recorded as story state for subsequent events to reference.</p></article>
+              <article><span class="media-label">Inventory</span><h3>Pickup and memory</h3><p>Collectable items connect object interaction with persistent session data.</p></article>
+              <article><span class="media-label">Minigames</span><h3>Embedded actions</h3><p>Players complete short interactive tasks during exploration to advance local story events.</p></article>
+              <article><span class="media-label">Navigation UI</span><h3>Loading and pause</h3><p>Menu, loading, pause, and confirmation interfaces support transitions between gameplay states.</p></article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-band">
+        <div class="case-section case-shell">
+          <div>
+            <h2 class="section-heading">Small games and hidden routes carry the story forward.</h2>
+            <div class="prose">
+              <p>Short minigames connect story events, while hidden routes within the castle invite further exploration.</p>
+            </div>
+            <div class="minigame-list">
+              <article class="minigame-item">
+                <h3>The sugar-bowl episode: a music-and-rhythm minigame.</h3>
+                <div class="prose">
+                  <p>This minigame draws on the novel’s sugar-bowl poisoning: Merricat puts arsenic in the sugar, killing several family members, and her sister Constance is acquitted after standing trial. The game omits Uncle Julian to simplify the narrative and adapts the sugar-bowl episode into a music-and-rhythm interaction that connects and advances story events.</p>
+                </div>
+                <figure class="wide-media minigame-media">
+                  <img src="../assets/encoded-space-minigame-start.png" alt="Start screen of the music-and-rhythm minigame" />
+                  <figcaption>Music-and-rhythm minigame · a playable reconstruction of a hidden narrative event</figcaption>
+                </figure>
+              </article>
+              <article class="minigame-item">
+                <h3>Finding a shared frequency.</h3>
+                <div class="prose">
+                  <p>The second minigame uses song within the sisters’ relationship as the basis for a shared-frequency task. It is the team’s interactive adaptation of that relationship.</p>
+                  <p>In the novel, village children taunt Merricat with a rhyme about the poisoning, associating song with hostility toward the sisters. The game uses the shared-frequency task to express a connection between them and advance the story through sound.</p>
+                </div>
+                <figure class="wide-media minigame-media">
+                  <img src="../assets/encoded-space-minigame-frequency-start.png" alt="Start screen of the shared-frequency minigame" />
+                  <figcaption>Shared-frequency minigame · translating public dissonance into a playable search for connection</figcaption>
+                </figure>
+              </article>
+              <article class="minigame-item">
+                <h3>Exploring a hidden passage.</h3>
+                <div class="prose">
+                  <p>A passage is concealed within the castle’s domestic spaces. Players need to explore carefully, find its entrance, and pass through to continue. Finding the route is part of progressing through the story.</p>
+                </div>
+                <figure class="wide-media minigame-media">
+                  <img src="../assets/encoded-space-secret-passage.png" alt="A concealed passage discovered behind a door in the castle game" />
+                  <figcaption>Hidden passage · exploration opens a route the interface does not announce</figcaption>
+                </figure>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="quote-band">
+        <div class="case-section case-shell">
+          <blockquote>Objects and clues found in the rooms gradually reveal the family’s past.</blockquote>
+        </div>
+      </section>
+
+      <section class="case-band">
+        <div class="case-section case-shell">
+          <div>
+            <h2 class="section-heading">The interface separates exploration, reading, and decision-making.</h2>
+            <div class="prose">
+              <p>
+                The interaction interface and its visual states preserve the dark
+                printed aesthetic while making very
+                different actions, such as reading a clue and choosing a response,
+                immediately distinguishable.
+              </p>
+            </div>
+            <div class="cat-strip ui-strip" data-drag-strip>
+              <div class="cat-strip-frame">
+                <div class="cat-asset-viewport" tabindex="0" role="region" aria-label="Eight UI design screens">
+                  <div class="cat-asset-track">
+                    <figure class="cat-asset-card"><img src="../assets/encoded-space-ui-01-main-menu.png" alt="Main menu interface for the castle game" /><figcaption>01 · Main menu</figcaption></figure>
+                    <figure class="cat-asset-card"><img src="../assets/encoded-space-ui-02-exit-confirm.png" alt="Exit confirmation interface for the castle game" /><figcaption>02 · Exit confirmation</figcaption></figure>
+                    <figure class="cat-asset-card"><img src="../assets/encoded-space-ui-04-loading-transition.png" alt="Loading transition interface for the castle game" /><figcaption>04 · Loading transition</figcaption></figure>
+                    <figure class="cat-asset-card"><img src="../assets/encoded-space-ui-05-pause.png" alt="Pause interface for the castle game" /><figcaption>05 · Pause</figcaption></figure>
+                    <figure class="cat-asset-card"><img src="../assets/encoded-space-ui-06-pause-return-menu-confirm.png" alt="Return-to-menu confirmation interface for the castle game" /><figcaption>06 · Return-to-menu confirmation</figcaption></figure>
+                    <figure class="cat-asset-card"><img src="../assets/encoded-space-ui-08-dialogue.png" alt="Dialogue interface for the castle game" /><figcaption>08 · Dialogue</figcaption></figure>
+                    <figure class="cat-asset-card"><img src="../assets/encoded-space-ui-10-diary-strip.png" alt="Diary-strip interface for the castle game" /><figcaption>10 · Diary strip</figcaption></figure>
+                    <figure class="cat-asset-card"><img src="../assets/encoded-space-ui-12-choice.png" alt="Choice interface for the castle game" /><figcaption>12 · Choice</figcaption></figure>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-band">
+        <div class="case-section case-shell">
+          <div>
+            <h2 class="section-heading">Asset selection, preparation, and scene integration.</h2>
+            <div class="prose">
+              <p>The main-use library contains 60 GLB files. Their retained metadata identifies 57 as Tripo/VAST AIGC outputs and three as Blender exports. Production involved generating objects, then selecting, naming, cleaning, combining, and placing them in scenes.</p>
+            </div>
+            <div class="process-flow four" aria-label="3D asset pipeline">
+              <article class="process-step"><span>01</span><h3>Generate</h3><p>Create candidate props and furniture with Tripo3D.</p></article>
+              <article class="process-step"><span>02</span><h3>Curate</h3><p>Sort assets by room, clue function, and production priority.</p></article>
+              <article class="process-step"><span>03</span><h3>Prepare</h3><p>Clean and combine selected objects through Blender exports.</p></article>
+              <article class="process-step"><span>04</span><h3>Integrate</h3><p>Import, light, collide, and connect assets to Godot interactions.</p></article>
+            </div>
+            <figure class="wide-media asset-array-media">
+              <img src="../assets/encoded-space-asset-array.png" alt="Array of 3D assets created for the castle game" />
+              <figcaption>Asset array · selected props, furniture, and environmental elements created for the castle prototype</figcaption>
+            </figure>
+            <div class="media-grid two">
+              <figure><img src="../assets/thu-gameplay-kitchen.png" alt="Interactive kitchen table with highlighted objects" /><figcaption>Kitchen prototype · interactable props</figcaption></figure>
+              <figure><img src="../assets/thu-gameplay-burnt.png" alt="Burnt version of the kitchen environment" /><figcaption>Transformed kitchen · narrative state through scene variation</figcaption></figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-band">
+        <div class="case-section case-shell">
+          <div>
+            <h2 class="section-heading">Technical architecture and prototype implementation.</h2>
+            <div class="credit-grid">
+              <div>
+                <h2>Planned architecture</h2>
+                <div class="prose"><p>The Godot report proposes modular levels, reusable interaction templates, signals, clue systems, and a kitchen-first production sequence.</p></div>
+              </div>
+              <div>
+                <h2>Implemented prototype</h2>
+                <div class="prose"><p>The project includes scripts for session and world state, story controllers, dialogue, doors, pickups, readable objects, choices, video triggers, and minigame interactions.</p></div>
+              </div>
+            </div>
+            <figure class="wide-media">
+              <img src="../assets/thu-gameplay-choice.png" alt="A player choice presented over the kitchen scene" />
+              <figcaption>Playable choice interaction · captured from the Godot build</figcaption>
+            </figure>
+            <figure class="wide-media project-video">
+              <video controls preload="metadata" playsinline poster="../assets/thu-gameplay-choice.png">
+                <source src="https://pub-a81f8bd24c6e47b08199168de11d3ccb.r2.dev/encoded-space-trailer.mp4" type="video/mp4" />
+                Your browser does not support the video element.
+              </video>
+              <figcaption>Gameplay video · Encoded Space</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="case-next">
+      <div class="case-next-inner case-shell">
+        <div><h2>AI Green Nexus City</h2></div>
+        <a href="./ai-green-nexus-city.html">View case study <span aria-hidden="true">→</span></a>
+      </div>
+    </footer>
+    <script src="../encoded-space.js" defer></script>
+    <script src="../cat-storyboard.js?v=20260908-horizontal-wheel-v1" defer></script>
+  </body>
+</html>

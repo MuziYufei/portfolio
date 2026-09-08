@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>《群眾意見》桌遊玩法指引</title>
+  <link rel="stylesheet" href="css/style.css?v=20260908-no-frame-v2">
+  <link rel="stylesheet" href="css/slide-stage.css?v=20260908-no-frame-v2">
+</head>
+<body class="embed-page">
+
+
+  <!-- 主體視圖區域 -->
+  <main class="main-container">
+    <h1 class="sr-only">《群眾意見》交互式玩法說明</h1>
+
+    <section class="view-section active" id="view-rules">
+      <div class="slide-wrapper">
+
+        <div class="stage-viewport-card" id="stage-viewport-card" tabindex="0" aria-label="七步玩法演示舞臺">
+
+          <img class="stage-scene-img" id="stage-scene-img" src="web-assets/slides/slide_01.png" alt="建立桌面與牌堆">
+
+          <button class="stage-side-arrow stage-arrow-left" id="btn-side-prev" type="button" aria-label="上一步" title="上一步">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
+          <button class="stage-side-arrow stage-arrow-right" id="btn-side-next" type="button" aria-label="下一步" title="下一步">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+
+          <div class="stage-progress" aria-label="演示步驟進度">
+            <span id="curr-step-num">01</span>
+            <span class="stage-progress-sep">/</span>
+            <span id="total-step-num">07</span>
+          </div>
+        </div>
+
+        <div class="stage-caption-card" id="stage-caption-card" aria-live="polite">
+          <div class="caption-copy">
+            <h2 class="caption-title" id="caption-title">Set the table before the judgment begins.</h2>
+            <p class="caption-desc" id="caption-desc">Each player receives a complete set of identity tags. The topic deck stays at the center as a shared starting point.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 腳本加載 -->
+  <script src="js/slide-controller.js?v=20260908-no-frame-v2"></script>
+  <script src="js/app.js?v=20260908-no-frame-v2"></script>
+</body>
+</html>

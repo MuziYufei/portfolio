@@ -1,0 +1,10 @@
+*.mp4
+*.mov
+*.mkv
+*.webm
+.env
+.env.*
+!.env.example
+rclone.conf
+*.pem
+*.key

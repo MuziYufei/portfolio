@@ -1,0 +1,212 @@
+/* ==========================================================================
+   《群眾意見》網頁版玩法說明與卡牌圖鑒 - 全局樣式 (style.css)
+   風格定位：Warm-Cream 暖白微浮雕、極簡、高級感平面美學
+   ========================================================================== */
+
+:root {
+  /* 品牌核心色調 */
+  --color-speaker: #d8001b;       /* 發言玩家專屬紅 */
+  --color-speaker-glow: rgba(216, 0, 27, 0.2);
+  
+  --color-bg: #faf9f6;            /* 暖白底色，與效果圖完全一致 */
+  --color-surface: #ffffff;
+  --color-surface-subtle: #f4f2eb;
+  --color-border: #ede9df;
+  --color-border-dark: #dcd7ca;
+  
+  --color-text-main: #111827;
+  --color-text-muted: #6b7280;
+  --color-text-light: #9ca3af;
+  
+  /* 11 類標籤官方強調色 */
+  --tag-jianpanxia: #1E90FF;
+  --tag-gangjing:   #E51C23;
+  --tag-bailanren:  #F57C00;
+  --tag-qiqiangpai: #2EAD5B;
+  --tag-leziren:    #8E44AD;
+  --tag-dongwang:   #E53C8D;
+  --tag-sanguandang: #3949AB;
+  --tag-erjiguan:   #89ABE3;
+  --tag-xidigong:   #03786F;
+  --tag-fuduji:     #FBC02D;
+  --tag-laoshiren:  #AFDD23;
+
+  /* 邊角與陰影 */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.06);
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --nav-height: 64px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text-main);
+  line-height: 1.5;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+body.embed-page {
+  display: block;
+  background: transparent;
+}
+
+body.embed-page .main-container {
+  max-width: none;
+  padding: 0 0 16px;
+}
+
+/* 主內容包裹 */
+.main-container {
+  flex: 1;
+  width: 100%;
+  max-width: min(96vw, 1340px);
+  margin: 0 auto;
+  padding: 16px 16px 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 頁面模塊視圖 */
+.view-section {
+  display: none;
+  animation: fadeIn 0.35s ease;
+}
+
+.view-section.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 模塊標題 */
+.section-header {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 26px;
+  font-weight: 800;
+  margin-bottom: 6px;
+  letter-spacing: 0;
+}
+
+.section-desc {
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+/* 通用按鈕 */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 22px;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  text-decoration: none;
+  user-select: none;
+}
+
+.btn-primary {
+  background: var(--color-speaker);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(216, 0, 27, 0.25);
+}
+
+.btn-primary:hover {
+  background: #b90017;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(216, 0, 27, 0.35);
+}
+
+.btn-secondary {
+  background: #ffffff;
+  border-color: var(--color-border);
+  color: var(--color-text-main);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.btn-secondary:hover {
+  background: var(--color-surface-subtle);
+  border-color: var(--color-border-dark);
+}
+
+/* 頁腳 */
+.site-footer {
+  border-top: 1px solid var(--color-border);
+  padding: 24px 20px;
+  background: rgba(255, 255, 255, 0.6);
+  text-align: center;
+  font-size: 13px;
+  color: var(--color-text-light);
+}
+
+.footer-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    padding: 0 12px;
+  }
+  .brand-badge {
+    display: none;
+  }
+  .nav-tab-btn {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+  .main-container {
+    padding: 16px 12px 40px;
+  }
+}

@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="李宇飛參與製作的 Godot 三維城堡敘事原型 Encoded Space。" />
+    <title>Encoded Space｜李宇飛</title>
+  <link rel="stylesheet" href="../../project.css?v=20260908-detail-nav-copy-v5" />
+  </head>
+  <body class="castle">
+    <header class="case-nav case-shell">
+      <a href="../index.html">場所的他者</a>
+      <nav class="case-nav-links" aria-label="項目詳情導航">
+        <a href="../index.html#a-projects">項目</a>
+        <a href="../profile.html">關於</a>
+        <a href="../../projects/encoded-space.html">EN / 繁</a>
+        <a href="../../Yufei-Li-CV.pdf">簡歷</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="case-hero case-shell">
+        <div class="case-hero-copy">
+          <div class="case-title">
+            <h1>Encoded Space</h1>
+            <p class="cn">三維城堡敘事原型</p>
+            <p class="case-lead">
+              一個通過房間、線索物件、對話與選擇，逐步揭開家庭故事的第一人稱遊戲。
+            </p>
+          </div>
+        </div>
+        <dl class="case-meta">
+          <div><dt>背景</dt><dd>清華大學 × 三七互娛工作坊</dd></div>
+          <div><dt>媒介</dt><dd>三維遊戲 · UI 系統 · 可玩版本</dd></div>
+          <div><dt>場地</dt><dd>城堡敘事世界</dd></div>
+        </dl>
+        <figure class="hero-media encoded-space-hero" data-encoded-space-slideshow>
+          <div class="encoded-space-slideshow" aria-label="七張每三秒切換的加載界面背景">
+            <img class="is-active" src="../../assets/encoded-space-loading-01.png" alt="哥特閣樓加載界面背景" />
+            <img src="../../assets/encoded-space-loading-02.png" alt="綠色臥室加載界面背景" />
+            <img src="../../assets/encoded-space-loading-03.png" alt="暗色臥室加載界面背景" />
+            <img src="../../assets/encoded-space-loading-04.png" alt="哥特花園加載界面背景" />
+            <img src="../../assets/encoded-space-loading-05.png" alt="哥特廚房加載界面背景" />
+            <img src="../../assets/encoded-space-loading-06.png" alt="圖書館臥室加載界面背景" />
+            <img src="../../assets/encoded-space-loading-07.png" alt="哥特屋頂加載界面背景" />
+          </div>
+          <figcaption>加載界面背景 · 每三秒切換</figcaption>
+        </figure>
+      </section>
+
+      <section class="case-band">
+        <div class="case-section case-shell">
+          <div>
+            <h2 class="section-heading">在城堡中探索家族往事。</h2>
+            <div class="prose">
+              <p>故事原型受到 Shirley Jackson 小說 <em>We Have Always Lived in the Castle</em>（《我們一直住在城堡裡》）啟發，延續了原著中家庭空間的不安氛圍與對家族往事的疑問。</p>
+              <p>團隊將小說中的家族往事分散在城堡的房間與線索物件中，供玩家在探索時逐步發現。玩家通過閱讀、收集、對話與選擇理解故事，並帶著新的線索重訪房間。</p>
+            </div>
+            <div class="media-grid three">
+              <figure><img src="../../assets/thu-gameplay-exterior.png" alt="可玩原型中的城堡外景" /><figcaption>抵達 · 外部環境建立隔絕感</figcaption></figure>
+              <figure><img src="../../assets/thu-gameplay-father.png" alt="父親角色與玩家對話" /><figcaption>對話 · 角色改變玩家的解讀方向</figcaption></figure>
+              <figure><img src="../../assets/thu-gameplay-reading.png" alt="廚房中有關砒霜的可閱讀線索" /><figcaption>閱讀線索 · 證據進入故事系統</figcaption></figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-band">
+        <div class="case-section case-shell">
+          <div>
+            <h2 class="section-heading">探索、對話與選擇的交互機制。</h2>
+            <div class="process-flow four" aria-label="已實現的交互流程">
+              <article class="process-step"><span>01</span><h3>接近</h3><p>空間觸發器檢測玩家與可交互物件。</p></article>
+              <article class="process-step"><span>02</span><h3>分發</h3><p>故事控制器調用對話、閱讀、拾取、選擇或小遊戲。</p></article>
+              <article class="process-step"><span>03</span><h3>回應</h3><p>不同 UI 狀態暫停、揭示或改變下一步行動。</p></article>
+              <article class="process-step"><span>04</span><h3>保存</h3><p>會話與世界狀態記錄線索、選擇和關卡進度。</p></article>
+            </div>
+            <div class="system-list">
+              <article><span class="media-label">對話</span><h3>人物遭遇</h3><p>玩家接近人物時觸發對話，由對話管理器調用相應內容。</p></article>
+              <article><span class="media-label">可閱讀物件</span><h3>查看證據</h3><p>書籍、紙條和線索物件進入獨立閱讀狀態，但不離開當前場景。</p></article>
+              <article><span class="media-label">選擇</span><h3>分支回應</h3><p>玩家選擇的回答會被記錄為故事狀態，供後續事件調用。</p></article>
+              <article><span class="media-label">收集</span><h3>拾取與記憶</h3><p>可收集物將物件交互與持續保存的會話數據連接起來。</p></article>
+              <article><span class="media-label">小遊戲</span><h3>嵌入式行動</h3><p>玩家在探索過程中完成小型交互任務，推進局部情節。</p></article>
+              <article><span class="media-label">導航 UI</span><h3>加載與暫停</h3><p>選單、載入、暫停與確認界面支援遊戲過程中的操作切換。</p></article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-band">
+        <div class="case-section case-shell">
+          <div>
+            <h2 class="section-heading">小遊戲與隱藏路徑共同推動故事。</h2>
+            <div class="prose">
+              <p>原型通過短篇幅的小遊戲串聯情節，也在城堡中設置隱藏路徑，供玩家在探索時發現。</p>
+            </div>
+            <div class="minigame-list">
+              <article class="minigame-item">
+                <h3>糖罐事件：音樂與節奏小遊戲。</h3>
+                <div class="prose">
+                  <p>這個小遊戲改編自小說中的糖罐投毒事件。原著中，Merricat 在糖罐中放入砒霜，造成多名家人死亡；姐姐 Constance 受審後獲判無罪。遊戲為簡化敘事省略了朱利安一角，並將糖罐事件改編為結合音樂與節奏的互動，用於串聯和推動情節。</p>
+                </div>
+                <figure class="wide-media minigame-media">
+                  <img src="../../assets/encoded-space-minigame-start.png" alt="結合音樂與節奏的小遊戲開始界面" />
+                  <figcaption>音樂與節奏小遊戲 · 將隱藏的敘事事件重構為可執行的行動</figcaption>
+                </figure>
+              </article>
+              <article class="minigame-item">
+                <h3>尋找共同頻率。</h3>
+                <div class="prose">
+                  <p>第二個小遊戲圍繞姐妹關係中的歌聲設計，要求玩家尋找共同頻率。這是團隊對人物關係的互動改編。</p>
+                  <p>原著中，村裡的孩子以投毒事件編成童謠，嘲弄 Merricat；歌聲伴隨著姐妹所承受的外界敵意。遊戲中的共同頻率則用於表達姐妹之間的聯繫，並通過聲音任務推動情節。</p>
+                </div>
+                <figure class="wide-media minigame-media">
+                  <img src="../../assets/encoded-space-minigame-frequency-start.png" alt="尋找共同頻率的小遊戲開始界面" />
+                  <figcaption>共同頻率小遊戲 · 將公共噪聲轉化為尋找連接的可玩過程</figcaption>
+                </figure>
+              </article>
+              <article class="minigame-item">
+                <h3>探索隱藏密道。</h3>
+                <div class="prose">
+                  <p>密道藏在城堡的日常空間裡。玩家需要仔細探索、發現入口，再穿過密道繼續前進。尋找路徑因此也是推進情節的一部分。</p>
+                </div>
+                <figure class="wide-media minigame-media">
+                  <img src="../../assets/encoded-space-secret-passage.png" alt="城堡遊戲中在門後發現的隱藏密道" />
+                  <figcaption>隱藏密道 · 探索打開界面沒有直接標記的路徑</figcaption>
+                </figure>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="quote-band">
+        <div class="case-section case-shell">
+          <blockquote>玩家在房間中找到的物件與線索，逐步揭示家族往事。</blockquote>
+        </div>
+      </section>
+
+      <section class="case-band">
+        <div class="case-section case-shell">
+          <div>
+            <h2 class="section-heading">界面將探索、閱讀和決策區分開來。</h2>
+            <div class="prose">
+              <p>
+                交互界面及其視覺狀態保留了深色版畫風格，同時讓閱讀線索和做出選擇等不同操作能夠被立即辨認。
+              </p>
+            </div>
+            <div class="cat-strip ui-strip" data-drag-strip>
+              <div class="cat-strip-frame">
+                <div class="cat-asset-viewport" tabindex="0" role="region" aria-label="八張 UI 設計截圖">
+                  <div class="cat-asset-track">
+                    <figure class="cat-asset-card"><img src="../../assets/encoded-space-ui-01-main-menu.png" alt="城堡遊戲主菜單界面" /><figcaption>01 · 主菜單</figcaption></figure>
+                    <figure class="cat-asset-card"><img src="../../assets/encoded-space-ui-02-exit-confirm.png" alt="城堡遊戲退出確認界面" /><figcaption>02 · 退出確認</figcaption></figure>
+                    <figure class="cat-asset-card"><img src="../../assets/encoded-space-ui-04-loading-transition.png" alt="城堡遊戲加載過渡界面" /><figcaption>04 · 加載過渡</figcaption></figure>
+                    <figure class="cat-asset-card"><img src="../../assets/encoded-space-ui-05-pause.png" alt="城堡遊戲暫停界面" /><figcaption>05 · 暫停</figcaption></figure>
+                    <figure class="cat-asset-card"><img src="../../assets/encoded-space-ui-06-pause-return-menu-confirm.png" alt="城堡遊戲返回主菜單確認界面" /><figcaption>06 · 返回主菜單確認</figcaption></figure>
+                    <figure class="cat-asset-card"><img src="../../assets/encoded-space-ui-08-dialogue.png" alt="城堡遊戲對話界面" /><figcaption>08 · 對話</figcaption></figure>
+                    <figure class="cat-asset-card"><img src="../../assets/encoded-space-ui-10-diary-strip.png" alt="城堡遊戲日記紙條界面" /><figcaption>10 · 日記紙條</figcaption></figure>
+                    <figure class="cat-asset-card"><img src="../../assets/encoded-space-ui-12-choice.png" alt="城堡遊戲選擇界面" /><figcaption>12 · 選擇</figcaption></figure>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-band">
+        <div class="case-section case-shell">
+          <div>
+            <h2 class="section-heading">資產篩選、整理與場景整合。</h2>
+            <div class="prose">
+              <p>主用資產庫包含 60 個 GLB 文件。文件保留的元數據顯示，其中 57 個來自 Tripo/VAST AIGC，3 個為 Blender 導出。資產製作包括物件生成，以及後續的篩選、命名、清理、組合與場景配置。</p>
+            </div>
+            <div class="process-flow four" aria-label="三維資產管線">
+              <article class="process-step"><span>01</span><h3>生成</h3><p>使用 Tripo3D 生成道具與家具候選。</p></article>
+              <article class="process-step"><span>02</span><h3>篩選</h3><p>按照房間、線索功能和製作優先級整理。</p></article>
+              <article class="process-step"><span>03</span><h3>處理</h3><p>通過 Blender 清理並合併選中的物件。</p></article>
+              <article class="process-step"><span>04</span><h3>整合</h3><p>導入 Godot，設置燈光、碰撞並連接交互。</p></article>
+            </div>
+            <figure class="wide-media asset-array-media">
+              <img src="../../assets/encoded-space-asset-array.png" alt="為城堡遊戲製作的三維資產陣列" />
+              <figcaption>資產展示陣列 · 為城堡原型製作的道具、家具與環境元素</figcaption>
+            </figure>
+            <div class="media-grid two">
+              <figure><img src="../../assets/thu-gameplay-kitchen.png" alt="包含高亮物件的可交互廚房餐桌" /><figcaption>廚房原型 · 可交互道具</figcaption></figure>
+              <figure><img src="../../assets/thu-gameplay-burnt.png" alt="被燒毀後的廚房環境" /><figcaption>變化後的廚房 · 用場景狀態傳遞敘事</figcaption></figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-band">
+        <div class="case-section case-shell">
+          <div>
+            <h2 class="section-heading">技術架構與原型實現。</h2>
+            <div class="credit-grid">
+              <div><h2>規劃架構</h2><div class="prose"><p>Godot 報告提出模塊化關卡、可復用交互模板、信號、線索系統，以及先完成廚房原型的製作順序。</p></div></div>
+              <div><h2>已實現原型</h2><div class="prose"><p>工程包含會話與世界狀態、故事控制器、對話、門、拾取、可讀物、選擇、影片觸發器和小遊戲相關腳本。</p></div></div>
+            </div>
+            <figure class="wide-media">
+              <img src="../../assets/thu-gameplay-choice.png" alt="廚房場景上方顯示玩家選擇" />
+              <figcaption>可玩選擇交互 · 截取自 Godot 版本</figcaption>
+            </figure>
+            <figure class="wide-media project-video">
+              <video controls preload="metadata" playsinline poster="../../assets/thu-gameplay-choice.png">
+                <source src="https://pub-a81f8bd24c6e47b08199168de11d3ccb.r2.dev/encoded-space-trailer.mp4" type="video/mp4" />
+                您的瀏覽器不支持 video 元素。
+              </video>
+              <figcaption>項目視頻 · Encoded Space</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="case-next">
+      <div class="case-next-inner case-shell">
+        <div><h2>AI Green Nexus City</h2></div>
+        <a href="./ai-green-nexus-city.html">查看詳情 <span aria-hidden="true">→</span></a>
+      </div>
+    </footer>
+    <script src="../../encoded-space.js" defer></script>
+    <script src="../../cat-storyboard.js?v=20260908-horizontal-wheel-v1" defer></script>
+  </body>
+</html>
