@@ -62,6 +62,7 @@
   document.querySelectorAll("[data-auto-strip]").forEach((strip) => {
     const track = strip.querySelector(".cat-asset-track");
     if (!track || track.dataset.looped === "true") return;
+    if (window.matchMedia("(max-width: 820px), (prefers-reduced-motion: reduce)").matches) return;
 
     [...track.children].forEach((card) => {
       const clone = card.cloneNode(true);
