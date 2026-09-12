@@ -27,6 +27,8 @@ const setCurrentStage = (stage) => {
 };
 
 if (projectStages.length) {
+  document.documentElement.classList.add("motion-ready");
+  projectStages.forEach((stage) => stage.addEventListener("focusin", () => setCurrentStage(stage)));
 
   const projectObserver = new IntersectionObserver((entries) => {
     const visibleStage = entries
@@ -148,3 +150,70 @@ if (isSectionLink) {
 }
 
 window.addEventListener('hashchange', revealSectionFromHash);
+
+// One deliberate wheel gesture advances one stage, then briefly holds it.
+if (projectStages.length) {
+  let wheelLockUntil = 0;
+  let lastWheelAt = 0;
+  let wheelTotal = 0;
+  let wheelDirection = 0;
+  let scrollFrame = 0;
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  const stageTop = (stage) => Math.max(0, stage.getBoundingClientRect().top + window.scrollY - 76);
+  const stopStageScroll = () => {
+    cancelAnimationFrame(scrollFrame);
+    scrollFrame = 0;
+    document.documentElement.classList.remove('stage-stepping');
+    wheelLockUntil = 0;
+  };
+  window.addEventListener('wheel', (event) => {
+    if (event.ctrlKey || document.body.classList.contains('entry-open') ||
+        !matchMedia('(min-width: 701px) and (pointer: fine)').matches || reducedMotion.matches ||
+        Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
+    if (event.target.closest('input, textarea, select, [contenteditable="true"]')) return;
+    const now = performance.now();
+    const quiet = now - lastWheelAt > 180;
+    lastWheelAt = now;
+    if (now < wheelLockUntil || (!quiet && wheelLockUntil)) {
+      event.preventDefault();
+      return;
+    }
+    wheelLockUntil = 0;
+    const direction = Math.sign(event.deltaY);
+    if (!direction) return;
+    const nearest = projectStages.reduce((best, stage, index) =>
+      Math.abs(stageTop(stage) - window.scrollY) < Math.abs(stageTop(projectStages[best]) - window.scrollY) ? index : best, 0);
+    const active = projectStages[nearest];
+    const top = stageTop(active);
+    const bottom = top + active.offsetHeight - (window.innerHeight - 76);
+    // Let tall stages remain readable before advancing to the next stop.
+    if ((direction > 0 && window.scrollY < bottom - 12) ||
+        (direction < 0 && window.scrollY > top + 12)) return;
+    const next = nearest + direction;
+    if (next < 0 || next >= projectStages.length) return;
+    event.preventDefault();
+    if (quiet || direction !== wheelDirection) wheelTotal = 0;
+    wheelDirection = direction;
+    wheelTotal += Math.abs(event.deltaY) * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? innerHeight : 1);
+    if (wheelTotal < 18) return;
+    wheelTotal = 0;
+    const target = projectStages[next];
+    const startY = window.scrollY;
+    const endY = stageTop(target);
+    const started = performance.now();
+    wheelLockUntil = started + 760;
+    document.documentElement.classList.add('stage-stepping');
+    setCurrentStage(target);
+    const step = (time) => {
+      const progress = Math.min(1, (time - started) / 360);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      window.scrollTo({ top:startY + (endY - startY) * eased, behavior:'instant' });
+      if (progress < 1) scrollFrame = requestAnimationFrame(step);
+      else { scrollFrame = 0; document.documentElement.classList.remove('stage-stepping'); setCurrentStage(target); }
+    };
+    scrollFrame = requestAnimationFrame(step);
+  }, { passive:false });
+  window.addEventListener('keydown', stopStageScroll);
+  window.addEventListener('pointerdown', stopStageScroll);
+  window.addEventListener('resize', stopStageScroll);
+}

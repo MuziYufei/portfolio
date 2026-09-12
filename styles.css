@@ -517,3 +517,69 @@ body.entry-open { overflow: hidden; }
 }
 
 /* Keep Encoded Space in the same desktop cover frame as the other homepage projects. */
+
+/* Selected writing: covers and short editorial captions. */
+.a-writing { padding-block: 64px 80px; scroll-snap-align: start; }
+.writing-header { display:flex; align-items:end; justify-content:space-between; gap:24px; border-top:1px solid #bdbdb5; padding-top:32px; margin-bottom:36px; }
+.writing-eyebrow { margin:0 0 12px; color:var(--red); font-size:12px; letter-spacing:.08em; font-weight:700; }
+.writing-header h2 { margin:0; font-size:clamp(26px,3vw,42px); line-height:1.2; }
+.writing-header > p { margin:0; color:#686860; font-size:14px; }
+.writing-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:32px; }
+.writing-card { min-width:0; background:#eaeae5; }
+.writing-card > a { display:block; height:100%; }
+.writing-cover { aspect-ratio:16 / 9; overflow:hidden; background:#d9d9d2; }
+.writing-cover img { height:100%; width:100%; object-fit:cover; }
+.writing-card[data-writing-id="4"] img { object-position:50% 63%; }
+.writing-copy { padding:22px 24px 25px; }
+.writing-source { display:flex; justify-content:space-between; gap:10px; margin:0 0 12px; font-size:11px; color:#64645b; }
+.writing-source span { font-weight:400; }
+.writing-copy h3 { margin:0; font-size:21px; line-height:1.45; font-weight:700; }
+.writing-description { margin:12px 0 0; color:#626259; font-size:14px; line-height:1.65; }
+.writing-card a:hover h3 { color:var(--red); }
+.writing-card a:focus-visible { outline:3px solid var(--red); outline-offset:5px; }
+@media(max-width:700px) {
+ .a-writing { padding-block:40px; }
+ .writing-header { display:block; margin-bottom:24px; }
+ .writing-header > p { margin-top:14px; }
+ .writing-grid { grid-template-columns:1fr; gap:24px; }
+ .writing-copy { padding:18px 20px 22px; }
+ .writing-copy h3 { font-size:20px; }
+}
+
+/* Writing participates in the same stage observer and snap rhythm as projects. */
+.a-writing { min-height:calc(100svh - 76px); scroll-snap-stop:always; }
+.motion-ready .a-writing .writing-card {
+ opacity:.56; transform:translateY(36px) scale(.982);
+ transition:transform 260ms var(--ease-out-strong), opacity 220ms var(--ease-out-strong);
+}
+.motion-ready .a-writing.is-current .writing-card {
+ opacity:1; transform:translateY(0) scale(1);
+ transition:transform 620ms var(--ease-in-out-strong), opacity 420ms var(--ease-out-strong);
+}
+.motion-ready .a-writing.is-current .writing-card:nth-child(2) { transition-delay:50ms; }
+.motion-ready .a-writing.is-current .writing-card:nth-child(3) { transition-delay:100ms; }
+.motion-ready .a-writing.is-current .writing-card:nth-child(4) { transition-delay:150ms; }
+.a-writing .writing-card:focus-within { opacity:1; transform:none; }
+@media(min-width:1001px) {
+ .a-writing { display:flex; flex-direction:column; justify-content:center; padding-block:24px; }
+ .writing-header { padding-top:18px; margin-bottom:20px; }
+ .writing-header h2 { font-size:32px; }
+ .writing-grid { gap:20px 28px; }
+ .writing-cover { aspect-ratio:16 / 9; }
+ .writing-copy { padding:14px 20px 16px; }
+ .writing-source { margin-bottom:8px; }
+ .writing-copy h3 { font-size:18px; line-height:1.4; }
+ .writing-description { margin-top:8px; font-size:13px; line-height:1.5; }
+}
+@media(prefers-reduced-motion:reduce) {
+ .motion-ready .a-writing .writing-card,
+ .motion-ready .a-writing.is-current .writing-card { opacity:1; transform:none; transition:none; }
+}
+
+.writing-read { display:block; padding:0 20px 16px; font-size:12px; color:var(--red); font-weight:700; }
+.writing-card > a { cursor:pointer; position:relative; }
+html.home-reel.stage-stepping { scroll-snap-type:none; scroll-behavior:auto; }
+@media (min-width:701px) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
+ html.home-reel { scroll-snap-type:y mandatory; }
+ html.home-reel.stage-stepping { scroll-snap-type:none; }
+}

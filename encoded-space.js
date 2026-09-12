@@ -2,6 +2,10 @@
   "use strict";
 
   document.querySelectorAll("[data-encoded-space-slideshow]").forEach((slideshow) => {
+    if (window.portfolioMedia) {
+      window.portfolioMedia.startSlideshow(slideshow);
+      return;
+    }
     const slides = [...slideshow.querySelectorAll("img")];
     if (slides.length < 2) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;

@@ -1,5 +1,22 @@
 (() => {
+  const footer = document.querySelector('.df2025-case .case-next h2');
+  if (footer) {
+    footer.parentElement.style.minWidth = '0';
+    footer.parentElement.style.maxWidth = '100%';
+    const fitFooter = () => {
+      footer.style.fontSize = '';
+      if (!matchMedia('(max-width: 600px)').matches) return;
+      const available = footer.parentElement.clientWidth;
+      const widest = Math.max(...[...footer.children].map(line => line.scrollWidth));
+      if (widest > available) footer.style.fontSize = `${20 * available / widest}px`;
+    };
+    new ResizeObserver(fitFooter).observe(footer.parentElement);
+  }
   document.querySelectorAll("[data-df2025-rotator]").forEach((rotator) => {
+    if (window.portfolioMedia) {
+      window.portfolioMedia.startSlideshow(rotator);
+      return;
+    }
     const slides = Array.from(rotator.querySelectorAll("img"));
     if (slides.length < 2) return;
 
