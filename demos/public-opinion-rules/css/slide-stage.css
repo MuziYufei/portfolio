@@ -166,3 +166,19 @@ body.embed-page .main-container {
   .stage-caption-card { padding: 0; }
   .caption-title { font-size: 23px; margin-bottom: 8px; }
 }
+
+/* Each pending step displays its own tiny blurred preview. */
+.stage-scene-img.is-loading { filter: blur(12px); opacity: .65; }
+.stage-image-status {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  padding: 8px 12px;
+  background: rgba(250, 249, 246, .92);
+  color: #252525;
+  font-size: 14px;
+  text-align: center;
+  pointer-events: none;
+}
+.stage-image-status[hidden] { display: none; }

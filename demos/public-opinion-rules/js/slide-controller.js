@@ -7,7 +7,6 @@ class SlideController {
   constructor() {
     this.currentStep = 1;
     this.totalSteps = 7;
-    this.transitionTimer = null;
     this.transitionId = 0;
     this.imageLoads = new Map();
 
@@ -25,6 +24,7 @@ class SlideController {
     // DOM 元素引用
     this.viewportCard = document.getElementById('stage-viewport-card');
     this.sceneImg = document.getElementById('stage-scene-img');
+    this.imageStatus = document.getElementById('stage-image-status');
     this.btnSidePrev = document.getElementById('btn-side-prev');
     this.btnSideNext = document.getElementById('btn-side-next');
     this.currStepNum = document.getElementById('curr-step-num');
@@ -57,6 +57,7 @@ class SlideController {
         enTitle: 'Deal the labels and prepare the question deck.',
         zhDesc: '每位玩家拿取一套身份標籤卡，將話題牌堆放在桌面中央。',
         enDesc: 'Each player receives a complete set of identity labels. Place the question deck in the center of the table.',
+        preview: 'data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAAAwBACdASooABYAPwFssFArJaSisBVaqWAgCWkA0qwLNrLsPWemLSXI+AAA/u+0YPLardUMyoHEt6c+ZEIzasu/rnAAAA==',
         img: 'web-assets/slides/rules-step-01.webp?v=20261102'
       },
       {
@@ -67,6 +68,7 @@ class SlideController {
         enTitle: 'The speaker draws a question card.',
         zhDesc: '發言人從中央牌堆抽取一張卡，讀出本輪的問題。',
         enDesc: 'The speaker draws a card from the central deck and reads the question aloud.',
+        preview: 'data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAAAwBACdASooABYAPwFssFArJiSisBVaqWAgCWkA0qwLNrEgdOXKgHYizAAA/u+0YPPureEMLztAEyREXRNZL2KM0hs2AAAA',
         img: 'web-assets/slides/rules-step-02.webp?v=20261102'
       },
       {
@@ -77,6 +79,7 @@ class SlideController {
         enTitle: 'The speaker answers the question.',
         zhDesc: '發言人公開回答，其他玩家聆聽內容，並留意語氣與立場。',
         enDesc: 'The speaker answers aloud. The other players listen to the content, tone, and viewpoint.',
+        preview: 'data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAAAQBACdASooABYAPwFssE+rJiSiMBVaqWAgCWkA0ugLNrGDo0LejuwGAAD+77Rg8JO+cY9x739GcovX9E4OEsjC+9YAAAAA',
         img: 'web-assets/slides/rules-step-03.webp?v=20261102'
       },
       {
@@ -87,6 +90,7 @@ class SlideController {
         enTitle: 'Choose a label and place it face down.',
         zhDesc: '其他玩家各自選擇最符合發言者的標籤，牌面朝下放置，暫不公開。',
         enDesc: 'Each listener chooses the label that best describes the speaker and places it face down before the reveal.',
+        preview: 'data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAABwBACdASooABYAPwFssFCrJaSisBVaqWAgCWkA0qwLNrLsPWemLSVe4bni4AD+77Rg8tqt1QzKgcS3pz5kQjNiwEAAAAAA',
         img: 'web-assets/slides/rules-step-04.webp?v=20261102'
       },
       {
@@ -97,6 +101,7 @@ class SlideController {
         enTitle: 'Reveal the labels together.',
         zhDesc: '所有玩家同時翻開所選標籤，查看各種標籤獲得的票數。',
         enDesc: 'All tags are revealed together, making the group\'s reading of the speaker visible at once.',
+        preview: 'data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAAAwBACdASooABYAPwFssFArJiSisBVaqWAgCWkA0MwLNrIVrgX3U+6GpQAA/u+0YPPuQeENfvE7rpaa35BZynHCIImAAA==',
         img: 'web-assets/slides/rules-step-05.webp?v=20261102'
       },
       {
@@ -107,6 +112,7 @@ class SlideController {
         enTitle: 'Score according to the consensus threshold.',
         zhDesc: '當某一標籤達到本輪的共識門檻，參與形成該共識的玩家獲得分數。',
         enDesc: 'When one label reaches the round\'s threshold, the players who formed that consensus receive the score.',
+        preview: 'data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAABQBACdASooABYAPu1kqU6ppiQiNUgBMB2JaQDS6Cza0FY79twvvC3xPYgAAP7xwv034hA4KH4+2CAvbwfNtuPfwAA=',
         img: 'web-assets/slides/rules-step-06.webp?v=20261102'
       },
       {
@@ -117,6 +123,7 @@ class SlideController {
         enTitle: 'The result determines who speaks next.',
         zhDesc: '達成共識時，形成共識的玩家得分並移交發言；未達標時，發言者得分並保留發言身份。',
         enDesc: 'When consensus is reached, its contributors score and the role passes on. Otherwise, the speaker scores and stays for another prompt.',
+        preview: 'data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAAAwBACdASooABYAPwFssFArJaSisBVaqWAgCWkA0qwLNrLsPRiH6DmBpAAA/u+0YPLareEKQ5v5qyEJ5RWjzN1opQAAAA==',
         img: 'web-assets/slides/rules-step-07.webp?v=20261102'
       }
     ];
@@ -199,39 +206,43 @@ class SlideController {
     const desc = this.language === 'zh' ? data.zhDesc : data.enDesc;
     const index = this.language === 'zh' ? data.zhIndex : data.index;
     const transitionId = ++this.transitionId;
-    clearTimeout(this.transitionTimer);
 
-    const update = () => {
-      // A slower image or an earlier click must never overwrite a newer step.
+
+    // Immediately show this step's own preview, never the preceding clear image.
+    if (this.viewportCard) {
+      this.viewportCard.dataset.step = String(this.currentStep);
+      this.viewportCard.setAttribute('aria-busy', 'true');
+    }
+    if (this.sceneImg) {
+      this.sceneImg.classList.add('is-loading');
+      this.sceneImg.src = data.preview;
+      this.sceneImg.alt = title;
+    }
+    if (this.captionIndex) this.captionIndex.textContent = index;
+    if (this.captionTitle) this.captionTitle.textContent = title;
+    if (this.captionDesc) this.captionDesc.textContent = desc;
+    if (this.currStepNum) this.currStepNum.textContent = String(this.currentStep).padStart(2, '0');
+    if (this.totalStepNum) this.totalStepNum.textContent = String(this.totalSteps).padStart(2, '0');
+    if (this.imageStatus) {
+      this.imageStatus.hidden = false;
+      this.imageStatus.textContent = this.language === 'zh' ? '圖片載入中…' : 'Loading image…';
+    }
+    this.loadImage(data.img).then(() => {
+      // An earlier request must never replace the latest step's preview.
       if (transitionId !== this.transitionId) return;
-      if (this.viewportCard) this.viewportCard.dataset.step = String(this.currentStep);
       if (this.sceneImg) {
         this.sceneImg.src = data.img;
-        this.sceneImg.alt = title;
-        this.sceneImg.classList.remove('fade-out');
+        this.sceneImg.classList.remove('is-loading');
       }
-      if (this.captionIndex) this.captionIndex.textContent = index;
-      if (this.captionTitle) this.captionTitle.textContent = title;
-      if (this.captionDesc) this.captionDesc.textContent = desc;
-      if (this.captionCard) this.captionCard.classList.remove('fade-out');
-      if (this.currStepNum) this.currStepNum.textContent = String(this.currentStep).padStart(2, '0');
-      if (this.totalStepNum) this.totalStepNum.textContent = String(this.totalSteps).padStart(2, '0');
+      if (this.imageStatus) this.imageStatus.hidden = true;
       if (this.viewportCard) this.viewportCard.setAttribute('aria-busy', 'false');
-    };
-    if (this.viewportCard) this.viewportCard.setAttribute('aria-busy', 'true');
-    this.loadImage(data.img).then(() => {
-      if (transitionId !== this.transitionId) return;
-      if (immediate) update();
-      else {
-        if (this.sceneImg) this.sceneImg.classList.add('fade-out');
-        if (this.captionCard) this.captionCard.classList.add('fade-out');
-        this.transitionTimer = setTimeout(update, 120);
-      }
     }).catch(() => {
       if (transitionId !== this.transitionId) return;
-      // Restore normal rendering and permit a later navigation to retry the image.
-      if (this.sceneImg) this.sceneImg.classList.remove('fade-out');
-      if (this.captionCard) this.captionCard.classList.remove('fade-out');
+      // Keep this step's blurred preview visible when its clear image fails.
+      if (this.imageStatus) {
+        this.imageStatus.hidden = false;
+        this.imageStatus.textContent = this.language === 'zh' ? '圖片載入失敗，請重新切換此步驟。' : 'Image failed to load. Revisit this step to retry.';
+      }
       if (this.viewportCard) this.viewportCard.setAttribute('aria-busy', 'false');
     });
 
